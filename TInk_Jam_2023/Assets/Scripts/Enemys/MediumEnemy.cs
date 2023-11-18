@@ -31,13 +31,12 @@ public class MediumEnemy : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        currentHealth = maxHealth;
+
     }
 
     private void Update()
     {
-        if(currentHealth == 0)
-            Destroy(gameObject);
-
         if (playerTransform != null)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
@@ -49,8 +48,14 @@ public class MediumEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (CompareTag("Player"))
+        {
+            Debug.Log("Collided with Player");
+            currentHealth = maxHealth - playerAttackDamage;
+        }
+        
         if (CompareTag("PlayerWeapon"))
         {
             currentHealth = maxHealth - playerAttackDamage;
@@ -70,6 +75,9 @@ public class MediumEnemy : MonoBehaviour
         {
             currentHealth = maxHealth - playerAbility3Damage;
         }
+        
+        if(currentHealth <= 0)
+            Destroy(gameObject);
     }
 
     private void MoveTowardsPlayer()

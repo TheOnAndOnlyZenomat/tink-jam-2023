@@ -32,6 +32,7 @@ public class LightEnemy : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -50,10 +51,12 @@ public class LightEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (CompareTag("PlayerWeapon"))
+        Debug.Log("Collided with Player");
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("Collided with Player");
             currentHealth = maxHealth - playerAttackDamage;
         }
         
@@ -71,6 +74,9 @@ public class LightEnemy : MonoBehaviour
         {
             currentHealth = maxHealth - playerAbility3Damage;
         }
+        
+        if(currentHealth <= 0)
+            Destroy(gameObject);
     }
 
     private void MoveTowardsPlayer()
