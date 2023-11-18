@@ -7,19 +7,30 @@ public class Timer : MonoBehaviour
 {
 	[SerializeField]
 	public int delay;
+	public bool repeat;
 
 	public UnityEvent onTimerDone;
 
-    public IEnumerator StartTimer()
-    {
-        yield return new WaitForSeconds(delay);
+	private bool running = true;
 
-		onTimerDone.Invoke();
-    }
+	public IEnumerator StartTimer()
+	{
+		if (repeat) {
+			while (running) {
+				yield return new WaitForSeconds(delay);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+				onTimerDone.Invoke();
+			}
+		} else {
+			yield return new WaitForSeconds(delay);
+
+			onTimerDone.Invoke();
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 }
