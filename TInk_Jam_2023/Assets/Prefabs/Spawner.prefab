@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988fb37dbfc90f29c87f0b243fed579d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDelaySec: 0
+  spawnDurationSec: 0
+  spawnRepeats: 0
+  spawnBehaviours: []
+  timer: {fileID: 8034706966379818231, guid: ffdf0e367a5368ae3a2c7ade98ce471e, type: 3}
