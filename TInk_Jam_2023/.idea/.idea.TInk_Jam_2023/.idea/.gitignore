@@ -2,10 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/contentModel.xml
-/.idea.TInk_Jam_2023.iml
 /modules.xml
+/contentModel.xml
 /projectSettingsUpdater.xml
+/.idea.TInk_Jam_2023.iml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
