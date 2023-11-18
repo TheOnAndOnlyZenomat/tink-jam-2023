@@ -10,8 +10,7 @@ public class Timer : MonoBehaviour
 
 	public UnityEvent onTimerDone;
 
-    // Start is called before the first frame update
-    private IEnumerator Start()
+    public IEnumerator StartTimer()
     {
         yield return new WaitForSeconds(delay);
 
