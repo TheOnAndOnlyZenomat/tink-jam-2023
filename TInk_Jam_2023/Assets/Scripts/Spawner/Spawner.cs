@@ -30,8 +30,6 @@ public class Spawner : MonoBehaviour
 		timer.delay = spawnDelaySec;
 		timer.onTimerDone.AddListener(() => { Debug.Log("timer done"); });
 		StartCoroutine(timer.StartTimer());
-
-		while (true) {}
     }
 
     // Update is called once per frame
