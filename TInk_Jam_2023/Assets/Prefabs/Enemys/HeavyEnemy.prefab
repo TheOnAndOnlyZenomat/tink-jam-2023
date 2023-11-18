@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1875798675800320444}
   - component: {fileID: 6910772067211174488}
   - component: {fileID: 6225268344557334506}
-  - component: {fileID: 8368163897603907268}
   - component: {fileID: 594317963793883736}
   - component: {fileID: 8236142469503470723}
   - component: {fileID: 1515415507791308090}
@@ -21,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1875798675800320444
 Transform:
   m_ObjectHideFlags: 0
@@ -134,25 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8368163897603907268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700305215740408530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accceddfaba4b1047b7aa6b985954816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 70
-  moveSpeed: 130
-  playerAttackDamage: 0
-  playerAbility1Damage: 0
-  playerAbility2Damage: 0
-  playerAbility3Damage: 0
-  detectionRange: 5
 --- !u!50 &594317963793883736
 Rigidbody2D:
   serializedVersion: 4
@@ -165,10 +145,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 10
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -179,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8236142469503470723
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,7 +189,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -237,10 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2383665615523f140968be79de6ce126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
   maxHealth: 130
-  moveSpeed: 70
-  playerAttackDamage: 0
-  playerAbility1Damage: 0
-  playerAbility2Damage: 0
-  playerAbility3Damage: 0
-  detectionRange: 5
+  attackCooldown: 3
+  slamDuration: 1
+  slamDistance: 2
+  slamDamage: 45
