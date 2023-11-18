@@ -43,7 +43,6 @@ public class MediumEnemyBehavior : MonoBehaviour
     void Attack()
     {
         // Add your attack logic here
-        Debug.Log("Medium Enemy is attacking!");
 
         // Optionally, deal damage to the player or trigger an attack animation
         // You can replace this with your own attack logic

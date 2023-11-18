@@ -6,6 +6,8 @@ TagManager:
   tags:
   - floor
   - wall
+  - Enemy
+  - PlayerAttackOrb
   layers:
   - Default
   - TransparentFX

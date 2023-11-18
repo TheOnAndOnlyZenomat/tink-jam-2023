@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 594317963793883736}
   - component: {fileID: 8236142469503470723}
   - component: {fileID: 1515415507791308090}
+  - component: {fileID: 627561024430522251}
   m_Layer: 0
   m_Name: HeavyEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,3 +224,15 @@ MonoBehaviour:
   slamDuration: 1
   slamDistance: 2
   slamDamage: 45
+--- !u!114 &627561024430522251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700305215740408530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddab2d7ffbded6e1da1a34219bbad554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

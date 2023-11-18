@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1782237204862062495}
   - component: {fileID: 9039340575936637815}
   - component: {fileID: 5061313347887787971}
+  - component: {fileID: 8529188030103406122}
   m_Layer: 0
   m_Name: MediumEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,3 +224,15 @@ MonoBehaviour:
   slashDuration: 1
   slashDistance: 2
   slashDamage: 10
+--- !u!114 &8529188030103406122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176480895915831501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddab2d7ffbded6e1da1a34219bbad554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
