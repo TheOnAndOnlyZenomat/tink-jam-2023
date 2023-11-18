@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class Timer : MonoBehaviour
 {
 	[SerializeField]
-	private int delay;
+	public int delay;
 
-	private UnityEvent onTimerDone;
+	public UnityEvent onTimerDone;
 
     // Start is called before the first frame update
     private IEnumerator Start()

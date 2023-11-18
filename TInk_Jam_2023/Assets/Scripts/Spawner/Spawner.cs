@@ -21,14 +21,16 @@ public class Spawner : MonoBehaviour
 	[SerializeField]
 	private SpawnBehaviour[] spawnBehaviours;
 
-	private GameObject timer;
+	private Timer timer;
 
     // Start is called before the first frame update
     void Start()
     {
-		timer = Resources.Load("Timer") as GameObject;
+		timer = Resources.Load("Timer") as Timer;
 
+		timer.delay = spawnDelaySec;
 
+		timer.onTimerDone.AddListener(() => { Debug.Log("timer done"); });
     }
 
     // Update is called once per frame
