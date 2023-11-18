@@ -22,6 +22,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StabAttack",
+                    "type": "Button",
+                    "id": "21e20fec-7be4-4c91-8d53-2a27284a54b5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ConeAttack",
+                    "type": "Button",
+                    "id": "ee0541a3-6ef3-478b-b3a9-de665e86638a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CircleAttack",
+                    "type": "Button",
+                    "id": "48f3fc9b-2423-4552-8514-9db8e00b2656",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -88,6 +115,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "543ce82f-96db-4c96-aa8a-b7f2afdb8354",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StabAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "138fc425-b750-45d8-a69f-7b6fe8452d30",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConeAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88165def-2df8-4eac-883d-a7a150c3e5e5",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CircleAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

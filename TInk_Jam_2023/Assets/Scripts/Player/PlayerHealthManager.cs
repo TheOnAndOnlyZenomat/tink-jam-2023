@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerHealthManager : MonoBehaviour
@@ -15,6 +16,16 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void PlayerTakeDamage(int damage)
     {
-        _currentHealth = _currentHealth - damage;
+        _currentHealth -= damage;
+
+        if (_currentHealth <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        Debug.Log("Player has died");
     }
 }
