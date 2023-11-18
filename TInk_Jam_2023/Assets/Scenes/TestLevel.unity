@@ -592,6 +592,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _dashSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _dashingTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _dashCooldown
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _dashDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356510302504314493, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: _dashingPower
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
