@@ -5,83 +5,130 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
-    [Tooltip("Max Health of the Enemy")]
     [SerializeField] private int maxHealth;
-
-    [Tooltip("Movement Speed of the Enemy")]
-    [SerializeField] private float moveSpeed;
-
-    [Tooltip("Basic Player Attack Damage")] 
     [SerializeField] private int playerAttackDamage;
     
-    [Tooltip("Basic Player Ability1 Damage")] 
-    [SerializeField] private int playerAbility1Damage;
-    
-    [Tooltip("Basic Player Ability2 Damage")] 
-    [SerializeField] private int playerAbility2Damage;
-    
-    [Tooltip("Basic Player Ability3 Damage")] 
-    [SerializeField] private int playerAbility3Damage;
+    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float idleSpeed = 2f;
+    [SerializeField] private float chargeSpeed = 8f;
+    [SerializeField] private float chargeDistance = 7f;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float daggerSpeed = 10f;
 
-    [Tooltip("Detection Range for the player")] 
-    [SerializeField] private float detectionRange;
+    [SerializeField] private GameObject daggerPrefab;
+    
+    private Transform playerTransform;
+    private Vector2 chargeDirection;
+    private bool isCharging = false;
+    
+    private bool canTakeDamage = true;
+    private bool canAttack = true;
     
     private int currentHealth;
     
-    private Transform playerTransform;
     private void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindWithTag("Player").transform;
         currentHealth = maxHealth;
     }
 
     private void Update()
     {
-        if(currentHealth == 0)
-            Destroy(gameObject);
-
-        if (playerTransform != null)
+        if (!isCharging)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-
-            if (distanceToPlayer <= detectionRange)
-            {
-                MoveTowardsPlayer();
-            }
+            RotateTowardsPlayer();
+            CheckForCharge();
+            Move(idleSpeed);
+        }
+        else
+        {
+            Move(chargeSpeed);
+            Charge();
         }
     }
+
+    // method to handle the rotation towards the player
+    private void RotateTowardsPlayer()
+    {
+        Vector2 directionToPlayer = playerTransform.position - transform.position;
+        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+    }
+
+    // method to check if enemy should start charging towards player
+    private void CheckForCharge()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (distanceToPlayer <= chargeDistance)
+        {
+            chargeDirection = (playerTransform.position - transform.position).normalized;
+            isCharging = true;
+        }
+    }
+
+    // method to handle the actual charging
+    private void Charge()
+    {
+        transform.position += (Vector3)chargeDirection * chargeSpeed * Time.deltaTime;
+        if (canAttack == true)
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        Debug.Log("Enemy is attacking!");
+
+        GameObject dagger = Instantiate(daggerPrefab, transform.position, Quaternion.identity, transform);
+
+        Vector2 attackDirection = (playerTransform.position - transform.position).normalized;
+
+        float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        dagger.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        
+        canAttack = false;
+        StartCoroutine(ResetAttackCooldown());
+    }
+    
+    // method to handle movement
+    private void Move(float speed)
+    {
+        transform.position += transform.right * speed * Time.deltaTime;
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided with Player");
+        Debug.Log("Collided with wall");
         if (other.CompareTag("Player"))
         {
             Debug.Log("Collided with Player");
-            currentHealth = maxHealth - playerAttackDamage;
+            canTakeDamage = false;
+            currentHealth -= playerAttackDamage;
+            StartCoroutine(ResetDamageCooldown());
         }
-        
-        if (CompareTag("PlayerAbility1"))
+
+        if (currentHealth <= 0)
         {
-            currentHealth = maxHealth - playerAbility1Damage;
-        }
-        
-        if (CompareTag("PlayerAbility2"))
-        {
-            currentHealth = maxHealth - playerAbility2Damage;
-        }
-        
-        if (CompareTag("PlayerAbility3"))
-        {
-            currentHealth = maxHealth - playerAbility3Damage;
-        }
-        
-        if(currentHealth <= 0)
+            Debug.Log("Enemy Destroyed");
             Destroy(gameObject);
+        }
     }
 
-    private void MoveTowardsPlayer()
+    private IEnumerator ResetDamageCooldown()
     {
-        Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-        GetComponent<Rigidbody2D>().velocity = moveDirection * moveSpeed;
+        yield return new WaitForSeconds(2f);
+        canTakeDamage = true;
     }
-}
+    
+    private IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canTakeDamage = true;
+    }
+} 
+
