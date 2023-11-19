@@ -105,7 +105,6 @@ public class LightEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-		Debug.Log("taking damage in light: " + damage);
         currentHealth -= damage;
         if (currentHealth <= 0)
         {

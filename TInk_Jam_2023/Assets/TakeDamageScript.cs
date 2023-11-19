@@ -18,7 +18,6 @@ public class TakeDamageScript : MonoBehaviour
 
 	public void TakeDamage(int damage) {
 		string name = this.name;
-		Debug.Log("calling takedamage on " + name);
 		if (name == "Light Enemy") {
 			this.GetComponent<LightEnemy>().TakeDamage(damage);
 		} else if (name == "MediumEnemy") {

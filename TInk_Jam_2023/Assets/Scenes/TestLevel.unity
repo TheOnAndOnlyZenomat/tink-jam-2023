@@ -649,8 +649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stabAttack: {fileID: 4953873520039126490, guid: 2ef924386874ec1878e730b994bb56f2, type: 3}
-  coneAttack: {fileID: 0}
-  circleAttack: {fileID: 0}
+  coneAttack: {fileID: 4953873520039126490, guid: 30866e53e93c919dfb170fc92873b558, type: 3}
+  circleAttack: {fileID: 4953873520039126490, guid: 2f05b45a599a994bf94fdb3f96b9926a, type: 3}
 --- !u!1001 &1707585050
 PrefabInstance:
   m_ObjectHideFlags: 0
