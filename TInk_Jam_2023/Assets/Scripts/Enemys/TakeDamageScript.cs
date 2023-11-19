@@ -18,11 +18,11 @@ public class TakeDamageScript : MonoBehaviour
 
 	public void TakeDamage(int damage) {
 		string name = this.name;
-		if (name == "Light Enemy") {
+		if (name.StartsWith("Light Enemy")) {
 			this.GetComponent<LightEnemy>().TakeDamage(damage);
-		} else if (name == "MediumEnemy") {
+		} else if (name.StartsWith("MediumEnemy")) {
 			this.GetComponent<MediumEnemyBehavior>().TakeDamage(damage);
-		} else if (name == "HeavyEnemy") {
+		} else if (name.StartsWith("HeavyEnemy")) {
 			this.GetComponent<HeavyEnemy>().TakeDamage(damage);
 		}
 	}
