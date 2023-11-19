@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MediumEnemyBehavior : MonoBehaviour
@@ -16,15 +17,38 @@ public class MediumEnemyBehavior : MonoBehaviour
     private float attackCooldownTimer;
     private int currentHealth;
 
+	private Animator animController;
+
+	[SerializeField]
+	private AnimationClip attackAnim;
+	[SerializeField]
+	private AnimationClip deathAnim;
+
+	private bool dying;
+	private bool died;
+
     void Start()
     {
         // Assuming your player has a "Player" tag
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = maxHealth;
+
+		this.animController = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
+		if (dying) {
+			foreach (BoxCollider2D collider in this.gameObject.GetComponents<BoxCollider2D>()) {
+				collider.enabled = false;
+			}
+
+			if (died != true) {
+				StartCoroutine(PlayDeath());
+			}
+			return;
+		}
+
         if (CanAttack())
         {
             Attack();
@@ -47,11 +71,25 @@ public class MediumEnemyBehavior : MonoBehaviour
         // Optionally, deal damage to the player or trigger an attack animation
         // You can replace this with your own attack logic
         
+		this.animController.SetBool("isAttacking", true);
 		player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slashDamage);
+		StartCoroutine(WaitForAttackAnim());
 
         // Reset the attack cooldown timer
         attackCooldownTimer = attackCooldown;
     }
+
+	IEnumerator WaitForAttackAnim() {
+		yield return new WaitForSeconds(this.attackAnim.length);
+		animController.SetBool("isAttacking", false);
+	}
+
+	IEnumerator PlayDeath() {
+		this.died = true;
+		animController.SetBool("isDying", true);
+		yield return new WaitForSeconds(this.deathAnim.length);
+		Destroy(this.gameObject);
+	}
 
     bool CanAttack()
     {
@@ -72,7 +110,8 @@ public class MediumEnemyBehavior : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+			this.dying = true;
         }
     }
+
 }
