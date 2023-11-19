@@ -11,7 +11,6 @@ public class LightEnemy : MonoBehaviour
 	[SerializeField] private float chargeDuration = 2f; // Duration of the charge
 	[SerializeField] private float cooldownDuration = 5f; // Cooldown duration after charging
 	[SerializeField] private float attackCooldown = 3f;
-	[SerializeField] private float stabDuration = 1f;
 	[SerializeField] private float stabDistance = 2f;
 	[SerializeField] private float stabDamage = 10f;
 

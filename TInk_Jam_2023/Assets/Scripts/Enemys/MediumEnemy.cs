@@ -8,7 +8,6 @@ public class MediumEnemyBehavior : MonoBehaviour
     [SerializeField] private int maxHealth;
     
     [SerializeField] private float attackCooldown = 3f;
-    [SerializeField] private float slashDuration = 1f;
     [SerializeField] private float slashDistance = 2f;
     [SerializeField] private float slashDamage = 10f;
     

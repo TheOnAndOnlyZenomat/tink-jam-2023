@@ -9,7 +9,6 @@ public class HeavyEnemy : MonoBehaviour
     [SerializeField] private int maxHealth;
     
     [SerializeField] private float attackCooldown = 3f;
-    [SerializeField] private float slamDuration = 1f;
     [SerializeField] private float slamDistance = 2f;
     [SerializeField] private float slamDamage = 10f;
     

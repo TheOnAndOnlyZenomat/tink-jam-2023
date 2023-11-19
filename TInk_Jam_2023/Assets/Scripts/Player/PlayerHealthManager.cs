@@ -11,7 +11,10 @@ public class PlayerHealthManager : MonoBehaviour
 
     [SerializeField] private HealthBarManager _healthManager;
     [SerializeField] private Animator _animator;
+
+	[SerializeField] AnimationClip deathAnim;
     
+	[SerializeField] GameObject deathScreen;
 
     private void Start()
     {
@@ -41,9 +44,15 @@ public class PlayerHealthManager : MonoBehaviour
     void Death()
     {
         _animator.SetBool("IsDead",true);
-        Debug.Log(_currentHealth);
-        Debug.Log("Player has died");
+		StartCoroutine(DieAndEnd());
     }
+
+	IEnumerator DieAndEnd() {
+		yield return new WaitForSeconds(deathAnim.length);
+		Time.timeScale = 0f;
+		deathScreen.SetActive(true);
+		Destroy(this.gameObject);
+	}
     
     void PauseGame()
     {
