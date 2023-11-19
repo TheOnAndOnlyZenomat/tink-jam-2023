@@ -26,7 +26,7 @@
                 {
                     "name": "StabAttack",
                     "type": "Button",
-                    "id": "21e20fec-7be4-4c91-8d53-2a27284a54b5",
+                    "id": "2fed87bc-e36f-404d-97c2-5e930df6b45a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -35,7 +35,7 @@
                 {
                     "name": "ConeAttack",
                     "type": "Button",
-                    "id": "ee0541a3-6ef3-478b-b3a9-de665e86638a",
+                    "id": "ce565cf3-5a1b-4fc5-a1c1-0bddf271e550",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -44,7 +44,7 @@
                 {
                     "name": "CircleAttack",
                     "type": "Button",
-                    "id": "48f3fc9b-2423-4552-8514-9db8e00b2656",
+                    "id": "2ab0f33e-7b5a-4e02-8594-58acdb96e9ad",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,7 +120,7 @@
                 },
                 {
                     "name": "",
-                    "id": "543ce82f-96db-4c96-aa8a-b7f2afdb8354",
+                    "id": "e8ab9114-335a-4fbf-9106-add2bbde2f17",
                     "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
@@ -131,7 +131,7 @@
                 },
                 {
                     "name": "",
-                    "id": "138fc425-b750-45d8-a69f-7b6fe8452d30",
+                    "id": "7cfc1242-73c5-42fb-bca3-f5eda8168ad2",
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
@@ -142,7 +142,7 @@
                 },
                 {
                     "name": "",
-                    "id": "88165def-2df8-4eac-883d-a7a150c3e5e5",
+                    "id": "96a187f8-f991-432a-99e3-32c8c07aa56c",
                     "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",

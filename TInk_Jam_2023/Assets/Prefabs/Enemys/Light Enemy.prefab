@@ -12,14 +12,16 @@ GameObject:
   - component: {fileID: 5408743776505155209}
   - component: {fileID: 5092975735615556756}
   - component: {fileID: 216231890519548951}
+  - component: {fileID: 9193617380648128387}
   - component: {fileID: 1589964078653106589}
+  - component: {fileID: 5115667382359805294}
   m_Layer: 0
   m_Name: Light Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6506794570577448856
 Transform:
   m_ObjectHideFlags: 0
@@ -99,8 +101,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 5
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -113,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &216231890519548951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,6 +161,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!61 &9193617380648128387
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707353642049073780}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &1589964078653106589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +218,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accceddfaba4b1047b7aa6b985954816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowSpeed: 2
+  chargeSpeed: 8
+  chargeDistance: 7
+  chargeDuration: 2
+  cooldownDuration: 3
+  attackCooldown: 2
+  stabDuration: 1
+  stabDistance: 2
+  stabDamage: 10
   maxHealth: 70
-  moveSpeed: 130
-  playerAttackDamage: 0
-  playerAbility1Damage: 0
-  playerAbility2Damage: 0
-  playerAbility3Damage: 0
-  detectionRange: 5
+--- !u!114 &5115667382359805294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707353642049073780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddab2d7ffbded6e1da1a34219bbad554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

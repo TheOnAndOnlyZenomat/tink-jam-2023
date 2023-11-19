@@ -1,88 +1,82 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MediumEnemy : MonoBehaviour
+public class MediumEnemyBehavior : MonoBehaviour
 {
-    [Tooltip("Max Health of the Enemy")]
+    [SerializeField] private float moveSpeed = 3f; // Speed of the medium enemy
+
     [SerializeField] private int maxHealth;
+    
+    [SerializeField] private float attackCooldown = 3f;
+    [SerializeField] private float slashDuration = 1f;
+    [SerializeField] private float slashDistance = 2f;
+    [SerializeField] private float slashDamage = 10f;
+    
+    private Transform player;
 
-    [Tooltip("Movement Speed of the Enemy")]
-    [SerializeField] private float moveSpeed;
-
-    [Tooltip("Basic Player Attack Damage")] 
-    [SerializeField] private int playerAttackDamage;
-    
-    [Tooltip("Basic Player Ability1 Damage")] 
-    [SerializeField] private int playerAbility1Damage;
-    
-    [Tooltip("Basic Player Ability2 Damage")] 
-    [SerializeField] private int playerAbility2Damage;
-    
-    [Tooltip("Basic Player Ability3 Damage")] 
-    [SerializeField] private int playerAbility3Damage;
-
-    [Tooltip("Detection Range for the player")] 
-    [SerializeField] private float detectionRange;
-    
+    private float attackCooldownTimer;
     private int currentHealth;
-    
-    private Transform playerTransform;
-    private void Start()
+
+    void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // Assuming your player has a "Player" tag
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = maxHealth;
-
     }
 
-    private void Update()
+    void Update()
     {
-        if (playerTransform != null)
+        if (CanAttack())
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-
-            if (distanceToPlayer <= detectionRange)
-            {
-                MoveTowardsPlayer();
-            }
+            Attack();
         }
+        // Move towards the player at a constant speed
+        MoveTowardsPlayer();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void MoveTowardsPlayer()
     {
-        if (CompareTag("Player"))
-        {
-            Debug.Log("Collided with Player");
-            currentHealth = maxHealth - playerAttackDamage;
-        }
+        // Move towards the player at the specified speed
+        Vector2 direction = (player.position - transform.position).normalized;
+        transform.Translate(direction * moveSpeed * Time.deltaTime);
+    }
+    
+    void Attack()
+    {
+        // Add your attack logic here
+
+        // Optionally, deal damage to the player or trigger an attack animation
+        // You can replace this with your own attack logic
         
-        if (CompareTag("PlayerWeapon"))
+        /* PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
         {
-            currentHealth = maxHealth - playerAttackDamage;
-        }
-        
-        if (CompareTag("PlayerAbility1"))
+            playerHealth.TakeDamage(slashDamage);
+        }*/
+
+        // Reset the attack cooldown timer
+        attackCooldownTimer = attackCooldown;
+    }
+
+    bool CanAttack()
+    {
+        // Check if the attack cooldown has expired and the player is within attack range
+        return attackCooldownTimer <= 0 && Vector2.Distance(transform.position, player.position) < slashDistance;
+    }
+
+    void FixedUpdate()
+    {
+        // Update the attack cooldown timer
+        if (attackCooldownTimer > 0)
         {
-            currentHealth = maxHealth - playerAbility1Damage;
+            attackCooldownTimer -= Time.fixedDeltaTime;
         }
-        
-        if (CompareTag("PlayerAbility2"))
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            currentHealth = maxHealth - playerAbility2Damage;
-        }
-        
-        if (CompareTag("PlayerAbility3"))
-        {
-            currentHealth = maxHealth - playerAbility3Damage;
-        }
-        
-        if(currentHealth <= 0)
             Destroy(gameObject);
-    }
-
-    private void MoveTowardsPlayer()
-    {
-        Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-        GetComponent<Rigidbody2D>().velocity = moveDirection * moveSpeed;
+        }
     }
 }

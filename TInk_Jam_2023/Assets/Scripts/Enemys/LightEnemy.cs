@@ -5,83 +5,112 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
-    [Tooltip("Max Health of the Enemy")]
+    [SerializeField] private float slowSpeed = 2f; // Speed when moving slowly
+    [SerializeField] private float chargeSpeed = 6f; // Speed when charging
+    [SerializeField] private float chargeDistance = 5f; // Distance to start charging
+    [SerializeField] private float chargeDuration = 2f; // Duration of the charge
+    [SerializeField] private float cooldownDuration = 3f; // Cooldown duration after charging
+    [SerializeField] private float attackCooldown = 3f;
+    [SerializeField] private float stabDuration = 1f;
+    [SerializeField] private float stabDistance = 2f;
+    [SerializeField] private float stabDamage = 10f;
+
     [SerializeField] private int maxHealth;
 
-    [Tooltip("Movement Speed of the Enemy")]
-    [SerializeField] private float moveSpeed;
-
-    [Tooltip("Basic Player Attack Damage")] 
-    [SerializeField] private int playerAttackDamage;
-    
-    [Tooltip("Basic Player Ability1 Damage")] 
-    [SerializeField] private int playerAbility1Damage;
-    
-    [Tooltip("Basic Player Ability2 Damage")] 
-    [SerializeField] private int playerAbility2Damage;
-    
-    [Tooltip("Basic Player Ability3 Damage")] 
-    [SerializeField] private int playerAbility3Damage;
-
-    [Tooltip("Detection Range for the player")] 
-    [SerializeField] private float detectionRange;
-    
+    private bool isCharging = false;
+    private float chargeTimer = 0f;
+    private float cooldownTimer = 0f;
     private int currentHealth;
-    
-    private Transform playerTransform;
-    private void Start()
+
+    private Transform player;
+
+    void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // Assuming your player has a "Player" tag
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = maxHealth;
     }
 
-    private void Update()
+    void Update()
     {
-        if(currentHealth == 0)
-            Destroy(gameObject);
-
-        if (playerTransform != null)
+        if (cooldownTimer > 0)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+            // If in cooldown, decrement the cooldown timer and move slowly
+            cooldownTimer -= Time.deltaTime;
+            MoveSlowly();
+        }
+        else
+        {
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-            if (distanceToPlayer <= detectionRange)
+            if (distanceToPlayer < chargeDistance)
             {
-                MoveTowardsPlayer();
+                if (!isCharging)
+                {
+                    // Start charging
+                    isCharging = true;
+                    chargeTimer = chargeDuration;
+                    ChargeAtPlayer();
+                }
+
+                // While charging, move at charge speed
+                ChargeAtPlayer();
+
+                // Decrement the charge timer
+                chargeTimer -= Time.deltaTime;
+
+                if (chargeTimer <= 0)
+                {
+                    // Stop charging, start cooldown
+                    isCharging = false;
+                    cooldownTimer = cooldownDuration;
+                }
+            }
+            else
+            {
+                // If the player is out of range, move slowly
+                MoveSlowly();
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void MoveSlowly()
     {
-        Debug.Log("Collided with Player");
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Collided with Player");
-            currentHealth = maxHealth - playerAttackDamage;
-        }
-        
-        if (CompareTag("PlayerAbility1"))
-        {
-            currentHealth = maxHealth - playerAbility1Damage;
-        }
-        
-        if (CompareTag("PlayerAbility2"))
-        {
-            currentHealth = maxHealth - playerAbility2Damage;
-        }
-        
-        if (CompareTag("PlayerAbility3"))
-        {
-            currentHealth = maxHealth - playerAbility3Damage;
-        }
-        
-        if(currentHealth <= 0)
-            Destroy(gameObject);
+        // Move at slow speed
+        Vector2 direction = (player.position - transform.position).normalized;
+        transform.Translate(direction * slowSpeed * Time.deltaTime);
     }
 
-    private void MoveTowardsPlayer()
+    void ChargeAtPlayer()
     {
-        Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-        GetComponent<Rigidbody2D>().velocity = moveDirection * moveSpeed;
+        // Move towards the player at charge speed
+        transform.position = Vector2.MoveTowards(transform.position, player.position, chargeSpeed * Time.deltaTime);
+        
+        /*if (isCharging)
+        {
+            //stabbing logic
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer < stabDistance)
+            {
+                PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(stabDamage);
+                }
+                
+                // Play attack animation here
+            }
+        }*/
     }
-}
+
+    public void TakeDamage(int damage)
+    {
+		Debug.Log("taking damage in light: " + damage);
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+} 
+
