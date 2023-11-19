@@ -233,6 +233,7 @@ MonoBehaviour:
   attackAnim: {fileID: 7400000, guid: f6f13f4db32a2cdffb7f83b2abba38d9, type: 2}
   deathAnim: {fileID: 7400000, guid: 0763d5231acef9e61a8b670415e3b28b, type: 2}
   _attackSound: {fileID: 8300000, guid: a613dcdb92dba09408b8c820a83fb238, type: 3}
+  _deathSound: {fileID: 8300000, guid: 3e62ace524045be41aee46709a024da8, type: 3}
 --- !u!114 &5115667382359805294
 MonoBehaviour:
   m_ObjectHideFlags: 0
