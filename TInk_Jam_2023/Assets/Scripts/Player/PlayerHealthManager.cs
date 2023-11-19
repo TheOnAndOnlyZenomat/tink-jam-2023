@@ -16,6 +16,14 @@ public class PlayerHealthManager : MonoBehaviour
     
 	[SerializeField] GameObject deathScreen;
 
+	[SerializeField] private GameObject scoreManager;
+	private ScoreManager scoreManagerScript;
+
+	[SerializeField]
+	private AudioClip deathAudio;
+
+	private AudioSource audioSource;
+
     private void Start()
     {
         _currentHealth = _maxHealth;
@@ -25,6 +33,10 @@ public class PlayerHealthManager : MonoBehaviour
         }
 
         UpdateHealthBar();
+
+		audioSource = GetComponent<AudioSource>();
+
+		scoreManagerScript = scoreManager.GetComponent<ScoreManager>();
     }
 
     public void PlayerTakeDamage(int damage)
@@ -45,6 +57,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
         _animator.SetBool("IsDead",true);
 		StartCoroutine(DieAndEnd());
+		audioSource.PlayOneShot(deathAudio);
     }
 
 	IEnumerator DieAndEnd() {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour
@@ -9,15 +8,23 @@ public class PlayerAttackManager : MonoBehaviour
 	
 	[SerializeField]
 	private GameObject stabAttack;
+	[SerializeField]
+	private AudioClip stabAudio;
 	private AttackInfo stabAttackInfo;
 
 	[SerializeField]
 	private GameObject coneAttack;
+	[SerializeField]
+	private AudioClip coneAudio;
 	private AttackInfo coneAttackInfo;
 
 	[SerializeField]
 	private GameObject circleAttack;
+	[SerializeField]
+	private AudioClip circleAudio;
 	private AttackInfo circleAttackInfo;
+
+	private AudioSource audioSource;
 
 	[SerializeField]
 	private float maxStamina = 100;
@@ -64,6 +71,8 @@ public class PlayerAttackManager : MonoBehaviour
 				break;
 			}
 		}
+
+		audioSource = GetComponent<AudioSource>();
     }
 
 	void FixedUpdate() {
@@ -90,7 +99,9 @@ public class PlayerAttackManager : MonoBehaviour
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		attackOrbScript.hideOrb(true);
+
 		GameObject attackObject = Instantiate(stabAttack, attackOrb.transform.position, attackDir, this.transform);
+		audioSource.PlayOneShot(this.stabAudio);
 
 		yield return new WaitForSeconds(stabAttackInfo.getAttackDuration());
 
@@ -114,7 +125,9 @@ public class PlayerAttackManager : MonoBehaviour
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		attackOrbScript.hideOrb(true);
+
 		GameObject attackObject = Instantiate(coneAttack, attackOrb.transform.position, attackDir, this.transform);
+		audioSource.PlayOneShot(this.coneAudio);
 
 		yield return new WaitForSeconds(coneAttackInfo.getAttackDuration());
 
@@ -137,7 +150,9 @@ public class PlayerAttackManager : MonoBehaviour
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		attackOrbScript.hideOrb(true);
+
 		GameObject attackObject = Instantiate(circleAttack, this.transform.position, attackDir, this.transform);
+		audioSource.PlayOneShot(this.circleAudio);
 
 		yield return new WaitForSeconds(circleAttackInfo.getAttackDuration());
 

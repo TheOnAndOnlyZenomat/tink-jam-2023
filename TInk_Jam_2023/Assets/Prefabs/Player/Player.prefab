@@ -1913,6 +1913,8 @@ MonoBehaviour:
   _animator: {fileID: 0}
   deathAnim: {fileID: 7400000, guid: 0ebf40e8cd90c4847867a705fa71984e, type: 2}
   deathScreen: {fileID: 165148313883515417}
+  scoreManager: {fileID: 0}
+  deathAudio: {fileID: 8300000, guid: f2798d5622fd45df5aa2ff8007bedc53, type: 3}
 --- !u!61 &7877369298849251273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2016,8 +2018,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stabAttack: {fileID: 4953873520039126490, guid: 2ef924386874ec1878e730b994bb56f2, type: 3}
+  stabAudio: {fileID: 8300000, guid: 50fb0790610e1aff79a53bb37c8d5302, type: 3}
   coneAttack: {fileID: 4953873520039126490, guid: a92ff85db04dcf6359844e5feb12f0ee, type: 3}
+  coneAudio: {fileID: 8300000, guid: 149252ce4495dec968348c68ef8eadcc, type: 3}
   circleAttack: {fileID: 4953873520039126490, guid: abf763dbcf87bde6da22080fa70548d7, type: 3}
+  circleAudio: {fileID: 8300000, guid: c67fffe54557213e9ae7ec96203f0cd4, type: 3}
   maxStamina: 100
   staminaRegenInterval: 1
   staminaRegenPerInterval: 1
