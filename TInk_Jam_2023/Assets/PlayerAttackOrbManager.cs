@@ -6,6 +6,10 @@ public class PlayerAttackOrbManager : MonoBehaviour
 {
 	private Transform player;
 	private bool rotate = true;
+
+	[SerializeField]
+	private float rotateSpeed = 100;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -20,7 +24,7 @@ public class PlayerAttackOrbManager : MonoBehaviour
 
 	void FixedUpdate() {
 		if (rotate){
-			this.transform.RotateAround(player.position, new Vector3(0, 0, 1), 100 * Time.deltaTime);
+			this.transform.RotateAround(player.position, new Vector3(0, 0, 1), this.rotateSpeed * Time.deltaTime);
 		}
 	}
 
