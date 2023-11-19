@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2707353642049073780, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5092975735615556756, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_Constraints
@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: playerAttackDamage
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 6327994796011973970, guid: 86179c1405af41a42a5b9adb91c6f6dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1955262150, guid: c089949bf0d8406c68bcbfa3d3bea5cd, type: 3}
     - target: {fileID: 6327994796011973970, guid: 86179c1405af41a42a5b9adb91c6f6dd, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -723,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1700305215740408530, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1700305215740408530, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_TagString
@@ -768,6 +772,18 @@ PrefabInstance:
     - target: {fileID: 1875798675800320444, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910772067211174488, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910772067211174488, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910772067211174488, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6910772067211174488, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_SortingOrder
