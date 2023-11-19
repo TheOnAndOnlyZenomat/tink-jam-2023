@@ -988,7 +988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabAttack: {fileID: 4953873520039126490, guid: 2ef924386874ec1878e730b994bb56f2, type: 3}
   coneAttack: {fileID: 4953873520039126490, guid: a92ff85db04dcf6359844e5feb12f0ee, type: 3}
-  circleAttack: {fileID: 4953873520039126490, guid: 2f05b45a599a994bf94fdb3f96b9926a, type: 3}
+  circleAttack: {fileID: 4953873520039126490, guid: abf763dbcf87bde6da22080fa70548d7, type: 3}
   maxStamina: 100
   staminaRegenInterval: 1
   staminaRegenPerInterval: 1
