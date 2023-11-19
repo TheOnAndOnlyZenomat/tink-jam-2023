@@ -29,6 +29,10 @@ public class HeavyEnemy : MonoBehaviour
 
 	private bool hitAlready = false;
 	[SerializeField] private int _scoreValue;
+	
+	[SerializeField] private AudioClip _attackSound;
+	[SerializeField] private AudioClip _deathSound;
+	private AudioSource _audioSource;
 
 	void Start()
     {
@@ -37,6 +41,7 @@ public class HeavyEnemy : MonoBehaviour
         currentHealth = maxHealth;
 
 		this.animController = this.gameObject.GetComponent<Animator>();
+		_audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -75,6 +80,7 @@ public class HeavyEnemy : MonoBehaviour
         // You can replace this with your own attack logic
         
 		this.animController.SetBool("isAttacking", true);
+		_audioSource.PlayOneShot(_attackSound);
 		StartCoroutine(WaitForAttackAnim());
 
         // Reset the attack cooldown timer
@@ -97,6 +103,7 @@ public class HeavyEnemy : MonoBehaviour
 	IEnumerator PlayDeath() {
 		this.died = true;
 		animController.SetBool("isDying", true);
+		_audioSource.PlayOneShot(_deathSound);
 		yield return new WaitForSeconds(this.deathAnim.length);
 		FindObjectOfType<ScoreManager>().IncreaseScore(_scoreValue);
 		Destroy(this.gameObject);
