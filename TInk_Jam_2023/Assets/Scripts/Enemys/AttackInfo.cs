@@ -10,6 +10,8 @@ public class AttackInfo : MonoBehaviour
 	private int attackDuration = 2;
 	[SerializeField]
 	private Animator animController;
+	[SerializeField]
+	private float staminaCost;
 
 	private PlayerAttackManager playerAttackScript;
 
@@ -41,5 +43,9 @@ public class AttackInfo : MonoBehaviour
 
 	public Animator getAnimatorController() {
 		return this.animController;
+	}
+
+	public float getStaminaCost() {
+		return this.staminaCost;
 	}
 }

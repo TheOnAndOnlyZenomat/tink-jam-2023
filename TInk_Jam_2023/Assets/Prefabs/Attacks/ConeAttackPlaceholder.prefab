@@ -133,6 +133,7 @@ MonoBehaviour:
   damage: 50
   attackDuration: 3
   animController: {fileID: 0}
+  staminaCost: 20
 --- !u!60 &1162498923424083701
 PolygonCollider2D:
   m_ObjectHideFlags: 0

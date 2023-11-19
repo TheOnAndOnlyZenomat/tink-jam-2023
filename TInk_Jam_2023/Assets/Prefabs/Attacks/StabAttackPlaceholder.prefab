@@ -178,3 +178,4 @@ MonoBehaviour:
   damage: 60
   attackDuration: 1
   animController: {fileID: 0}
+  staminaCost: 10

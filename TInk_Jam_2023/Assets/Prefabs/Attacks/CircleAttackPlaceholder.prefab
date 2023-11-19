@@ -133,6 +133,7 @@ MonoBehaviour:
   damage: 25
   attackDuration: 1
   animController: {fileID: 0}
+  staminaCost: 30
 --- !u!58 &5506598902853179543
 CircleCollider2D:
   m_ObjectHideFlags: 0
