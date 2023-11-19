@@ -27,8 +27,9 @@ public class MediumEnemyBehavior : MonoBehaviour
 	private bool died;
 
 	private bool hitAlready = false;
+	[SerializeField] private int _scoreValue;
 
-    void Start()
+	void Start()
     {
         // Assuming your player has a "Player" tag
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -96,6 +97,7 @@ public class MediumEnemyBehavior : MonoBehaviour
 		this.died = true;
 		animController.SetBool("isDying", true);
 		yield return new WaitForSeconds(this.deathAnim.length);
+		FindObjectOfType<ScoreManager>().IncreaseScore(_scoreValue);
 		Destroy(this.gameObject);
 	}
 
