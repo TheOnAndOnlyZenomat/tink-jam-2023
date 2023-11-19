@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &307860447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7940727679131078836, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+  m_PrefabInstance: {fileID: 4302425606668570377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &307860451
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307860447}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 012eeed0bae753647a675fd116b6fc9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &312805639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,6 +798,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 709393791622193530, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 709393791622193530, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 709393791622193530, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 709393791622193530, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 824191652283565965, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1816999021, guid: 7d711ce9981a5bb498e553d50c13ae75, type: 3}
     - target: {fileID: 824191652283565965, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -844,6 +890,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7155443407016186046, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155443407016186046, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155443407016186046, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155443407016186046, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7216282112827788781, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
       propertyPath: m_ReferenceResolution.x
       value: 1920
@@ -876,6 +938,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7802555536446844454, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 840811672, guid: 909ce417e0d04834e9145e148164b6c7, type: 3}
+    - target: {fileID: 7802555536446844454, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802555536446844454, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7802555536446844454, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8587338873508750729, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
       propertyPath: staminaBar
       value: 
@@ -899,6 +977,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6564204542716928482, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1265135167}
+    - targetCorrespondingSourceObject: {fileID: 7940727679131078836, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 307860451}
     - targetCorrespondingSourceObject: {fileID: 1678000545693673401, guid: 621b5d03da563574aad507794b90cfaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406782197}
