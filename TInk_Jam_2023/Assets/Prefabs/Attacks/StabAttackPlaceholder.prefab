@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 60
-  attackDuration: 0
+  attackDuration: 1
   animController: {fileID: 0}
