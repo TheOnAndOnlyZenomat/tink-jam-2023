@@ -31,6 +31,9 @@ public class PlayerAttackManager : MonoBehaviour
 
 	private bool canAttack = true;
 
+	[SerializeField]
+	private StaminaBarManager staminaBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,7 @@ public class PlayerAttackManager : MonoBehaviour
 		if (staminaTimer <= 0) {
 			if ((currentStamina <= maxStamina) == true) {
 				currentStamina = Mathf.Clamp(currentStamina + staminaRegenPerInterval, currentStamina + staminaRegenPerInterval, maxStamina);
+				staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
 			}
 			staminaTimer = staminaRegenInterval;
 		}
@@ -80,6 +84,7 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 		canAttack = false;
 		currentStamina -= stabAttackInfo.getStaminaCost();
+		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		GameObject attackObject = Instantiate(stabAttack, attackOrb.transform.position, attackDir, this.transform);
@@ -96,6 +101,7 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 		canAttack = false;
 		currentStamina -= coneAttackInfo.getStaminaCost();
+		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		GameObject attackObject = Instantiate(coneAttack, attackOrb.transform.position, attackDir, this.transform);
@@ -112,6 +118,7 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 		canAttack = false;
 		currentStamina -= circleAttackInfo.getStaminaCost();
+		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
 		GameObject attackObject = Instantiate(circleAttack, this.transform.position, attackDir, this.transform);

@@ -229,6 +229,8 @@ MonoBehaviour:
   stabDistance: 2
   stabDamage: 10
   maxHealth: 70
+  attackAnim: {fileID: 7400000, guid: f6f13f4db32a2cdffb7f83b2abba38d9, type: 2}
+  deathAnim: {fileID: 7400000, guid: 0763d5231acef9e61a8b670415e3b28b, type: 2}
 --- !u!114 &5115667382359805294
 MonoBehaviour:
   m_ObjectHideFlags: 0
