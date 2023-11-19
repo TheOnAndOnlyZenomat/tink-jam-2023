@@ -27,6 +27,8 @@ public class MediumEnemyBehavior : MonoBehaviour
 	private bool dying;
 	private bool died;
 
+	private bool hitAlready = false;
+
     void Start()
     {
         // Assuming your player has a "Player" tag
@@ -72,12 +74,19 @@ public class MediumEnemyBehavior : MonoBehaviour
         // You can replace this with your own attack logic
         
 		this.animController.SetBool("isAttacking", true);
-		player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slashDamage);
 		StartCoroutine(WaitForAttackAnim());
 
         // Reset the attack cooldown timer
+		//
         attackCooldownTimer = attackCooldown;
     }
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.tag == "Player" && hitAlready == false) {
+			hitAlready = true;
+			player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slashDamage);
+		}
+	}
 
 	IEnumerator WaitForAttackAnim() {
 		yield return new WaitForSeconds(this.attackAnim.length);
@@ -104,6 +113,9 @@ public class MediumEnemyBehavior : MonoBehaviour
         {
             attackCooldownTimer -= Time.fixedDeltaTime;
         }
+		if (attackCooldownTimer <= 0) {
+			this.hitAlready = false;
+		}
     }
     public void TakeDamage(int damage)
     {

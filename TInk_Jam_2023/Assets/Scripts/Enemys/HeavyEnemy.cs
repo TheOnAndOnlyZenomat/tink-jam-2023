@@ -28,6 +28,8 @@ public class HeavyEnemy : MonoBehaviour
 	private bool dying;
 	private bool died;
 
+	private bool hitAlready = false;
+
     void Start()
     {
         // Assuming your player has a "Player" tag
@@ -81,7 +83,8 @@ public class HeavyEnemy : MonoBehaviour
     }
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player" && hitAlready == false) {
+			hitAlready = true;
 			player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slamDamage);
 		}
 	}
@@ -111,6 +114,9 @@ public class HeavyEnemy : MonoBehaviour
         {
             attackCooldownTimer -= Time.fixedDeltaTime;
         }
+		if (attackCooldownTimer <= 0) {
+			this.hitAlready = false;
+		}
     }
 
     public void TakeDamage(int damage)
