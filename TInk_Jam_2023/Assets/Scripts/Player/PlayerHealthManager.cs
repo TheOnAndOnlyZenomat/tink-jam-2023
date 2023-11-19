@@ -10,6 +10,7 @@ public class PlayerHealthManager : MonoBehaviour
     [SerializeField] private int _currentHealth;
 
     [SerializeField] private HealthBarManager _healthManager;
+    [SerializeField] private Animator _animator;
     
 
     private void Start()
@@ -27,6 +28,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
 		Debug.Log("Player taking Damage");
         _currentHealth -= damage;
+        _animator.SetInteger("AnimationCurrentHealth", _currentHealth);
         
         UpdateHealthBar();
 
@@ -38,7 +40,14 @@ public class PlayerHealthManager : MonoBehaviour
 
     void Death()
     {
+        _animator.SetBool("IsDead",true);
+        Debug.Log(_currentHealth);
         Debug.Log("Player has died");
+    }
+    
+    void PauseGame()
+    {
+        Time.timeScale = 0f; // Pause the game
     }
 
     void UpdateHealthBar()
