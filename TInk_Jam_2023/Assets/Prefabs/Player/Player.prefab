@@ -1238,6 +1238,7 @@ MonoBehaviour:
   _dashingPower: 25
   _dashingTime: 0.2
   _dashingCooldown: 0
+  _dashStaminaCost: 10
 --- !u!114 &8732172183184081389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,6 +1254,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 0
   _healthManager: {fileID: 6811345604307934613}
+  _animator: {fileID: 0}
 --- !u!61 &7877369298849251273
 BoxCollider2D:
   m_ObjectHideFlags: 0
