@@ -63,7 +63,8 @@ public class LightEnemy : MonoBehaviour
 	{
 		if (cooldownTimer > 0)
 		{
-			MoveSlowly();
+			/* MoveSlowly(); */
+			MoveAway();
 		}
 		else
 		{
@@ -90,6 +91,13 @@ public class LightEnemy : MonoBehaviour
 	{
 		// Move at slow speed
 		Vector2 direction = (player.position - transform.position).normalized;
+		transform.Translate(direction * slowSpeed * Time.deltaTime);
+	}
+
+	void MoveAway()
+	{
+		// Move at slow speed
+		Vector2 direction = -(player.position - transform.position).normalized;
 		transform.Translate(direction * slowSpeed * Time.deltaTime);
 	}
 

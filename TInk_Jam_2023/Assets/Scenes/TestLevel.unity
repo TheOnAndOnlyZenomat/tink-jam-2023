@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f612aa56b0724cb1a397e9f883f64ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpeed: 200
 --- !u!212 &677051794
 SpriteRenderer:
   m_ObjectHideFlags: 0
