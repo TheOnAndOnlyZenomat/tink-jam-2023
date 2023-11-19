@@ -8,12 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashingPower = 15f;
     [SerializeField] private float _dashingTime = 0.2f;
     [SerializeField] private float _dashingCooldown = 1f;
+	[SerializeField] private float _dashStaminaCost = 10f;
     private Vector2 _movementInput;
     private Rigidbody2D _rb;
     private bool _canDash = true;
     private bool _isDashing;
-    
-    
 
     private void Awake()
     {
@@ -42,6 +41,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+		PlayerAttackManager staminaManager = this.gameObject.GetComponent<PlayerAttackManager>();
+		if ((staminaManager.getStamina() >= _dashStaminaCost) == false) {
+			yield break;
+		}
+		staminaManager.subtractStamina(_dashStaminaCost);
+
         _canDash = false;
         _isDashing = true;
         _rb.velocity = _movementInput * _dashingPower;

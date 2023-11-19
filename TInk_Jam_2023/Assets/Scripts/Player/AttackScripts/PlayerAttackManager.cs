@@ -84,8 +84,8 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 
 		canAttack = false;
-		currentStamina -= stabAttackInfo.getStaminaCost();
-		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
+		subtractStamina(stabAttackInfo.getStaminaCost());
 
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
@@ -108,8 +108,8 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 
 		canAttack = false;
-		currentStamina -= coneAttackInfo.getStaminaCost();
-		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
+		subtractStamina(coneAttackInfo.getStaminaCost());
 
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
@@ -131,8 +131,8 @@ public class PlayerAttackManager : MonoBehaviour
 		}
 
 		canAttack = false;
-		currentStamina -= circleAttackInfo.getStaminaCost();
-		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
+		subtractStamina(circleAttackInfo.getStaminaCost());
 
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
@@ -150,5 +150,14 @@ public class PlayerAttackManager : MonoBehaviour
 	public void hitEnemy(AttackInfo attack, Transform hitEnemy) {
 		TakeDamageScript damageScript = hitEnemy.gameObject.GetComponent<TakeDamageScript>();
 		damageScript.TakeDamage(attack.getDamage());
+	}
+
+	public void subtractStamina(float amount) {
+		currentStamina -= amount;
+		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+	}
+
+	public float getStamina() {
+		return currentStamina;
 	}
 }

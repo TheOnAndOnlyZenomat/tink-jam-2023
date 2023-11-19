@@ -868,7 +868,7 @@ MonoBehaviour:
   _speed: 10
   _dashingPower: 25
   _dashingTime: 0.2
-  _dashingCooldown: 1
+  _dashingCooldown: 0
 --- !u!114 &8732172183184081389
 MonoBehaviour:
   m_ObjectHideFlags: 0
