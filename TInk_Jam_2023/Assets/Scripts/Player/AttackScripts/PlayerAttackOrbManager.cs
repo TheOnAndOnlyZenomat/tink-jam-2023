@@ -31,4 +31,8 @@ public class PlayerAttackOrbManager : MonoBehaviour
 	public void setRotate(bool rotate) {
 		this.rotate = rotate;
 	}
+
+	public void hideOrb(bool hide) {
+		this.GetComponent<SpriteRenderer>().enabled = !hide;
+	}
 }

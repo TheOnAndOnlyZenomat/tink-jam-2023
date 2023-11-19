@@ -82,14 +82,21 @@ public class PlayerAttackManager : MonoBehaviour
 		if ((currentStamina >= stabAttackInfo.getStaminaCost()) == false) {
 			yield break;
 		}
+
 		canAttack = false;
 		currentStamina -= stabAttackInfo.getStaminaCost();
 		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
+		attackOrbScript.hideOrb(true);
 		GameObject attackObject = Instantiate(stabAttack, attackOrb.transform.position, attackDir, this.transform);
+
 		yield return new WaitForSeconds(stabAttackInfo.getAttackDuration());
+
 		Destroy(attackObject);
+
+		attackOrbScript.hideOrb(false);
 		attackOrbScript.setRotate(true);
 		canAttack = true;
 	}
@@ -99,14 +106,20 @@ public class PlayerAttackManager : MonoBehaviour
 		if ((currentStamina >= coneAttackInfo.getStaminaCost()) == false) {
 			yield break;
 		}
+
 		canAttack = false;
 		currentStamina -= coneAttackInfo.getStaminaCost();
 		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
+		attackOrbScript.hideOrb(true);
 		GameObject attackObject = Instantiate(coneAttack, attackOrb.transform.position, attackDir, this.transform);
+
 		yield return new WaitForSeconds(coneAttackInfo.getAttackDuration());
+
 		Destroy(attackObject);
+		attackOrbScript.hideOrb(false);
 		attackOrbScript.setRotate(true);
 		canAttack = true;
 	}
@@ -116,14 +129,20 @@ public class PlayerAttackManager : MonoBehaviour
 		if ((currentStamina >= circleAttackInfo.getStaminaCost()) == false) {
 			yield break;
 		}
+
 		canAttack = false;
 		currentStamina -= circleAttackInfo.getStaminaCost();
 		staminaBar.UpdateStaminaBar(currentStamina, maxStamina);
+
 		Quaternion attackDir = attackOrb.rotation;
 		attackOrbScript.setRotate(false);
+		attackOrbScript.hideOrb(true);
 		GameObject attackObject = Instantiate(circleAttack, this.transform.position, attackDir, this.transform);
+
 		yield return new WaitForSeconds(circleAttackInfo.getAttackDuration());
+
 		Destroy(attackObject);
+		attackOrbScript.hideOrb(false);
 		attackOrbScript.setRotate(true);
 		canAttack = true;
 	}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AttackInfo : MonoBehaviour
@@ -7,9 +8,9 @@ public class AttackInfo : MonoBehaviour
 	[SerializeField]
 	private int damage = 10;
 	[SerializeField]
-	private int attackDuration = 2;
+	private AnimatorController animController;
 	[SerializeField]
-	private Animator animController;
+	private AnimationClip stabAnimation;
 	[SerializeField]
 	private float staminaCost;
 
@@ -37,11 +38,11 @@ public class AttackInfo : MonoBehaviour
 		return this.damage;
 	}
 
-	public int getAttackDuration() {
-		return this.attackDuration;
+	public float getAttackDuration() {
+		return this.stabAnimation.length;
 	}
 
-	public Animator getAnimatorController() {
+	public AnimatorController getAnimatorController() {
 		return this.animController;
 	}
 
