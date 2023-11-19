@@ -16,6 +16,8 @@ public class LightEnemy : MonoBehaviour
 
 	[SerializeField] private int maxHealth;
 
+	[SerializeField] private int _scoreValue;
+
 	private bool isCharging = false;
 	private float chargeTimer = 0f;
 	private float cooldownTimer = 0f;
@@ -164,6 +166,7 @@ public class LightEnemy : MonoBehaviour
 		this.died = true;
 		animController.SetBool("isDying", true);
 		yield return new WaitForSeconds(this.deathAnim.length);
+		FindObjectOfType<ScoreManager>().IncreaseScore(_scoreValue);
 		Destroy(this.gameObject);
 	}
 }
