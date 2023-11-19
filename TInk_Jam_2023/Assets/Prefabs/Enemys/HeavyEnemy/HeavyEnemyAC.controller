@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MediumEnemyDeath
+  m_Name: HeavyEnemyDeath
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d080665f8756e6a03988076dd00ca4da, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7ba4e2fef21eb5911ae9f5c84a4400a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -58,7 +58,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MediumEnemyIdle
+  m_Name: HeavyEnemyIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -73,7 +73,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4cff524134faaf54fb336f307ada9f8b, type: 2}
+  m_Motion: {fileID: 7400000, guid: c0b70520d02a47ef9a0c03c27d4f85d9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -163,7 +163,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MediumEnemyAC
+  m_Name: HeavyEnemyAC
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAttacking
@@ -198,7 +198,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MediumEnemyAttack
+  m_Name: HeavyEnemyAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -213,7 +213,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c45309e89192a59ca7888096e1ddde5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 21c8dfc4aa979a20ea339bb720e81871, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
