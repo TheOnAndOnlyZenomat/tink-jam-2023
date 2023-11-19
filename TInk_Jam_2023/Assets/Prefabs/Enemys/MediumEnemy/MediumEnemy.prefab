@@ -132,11 +132,11 @@ MonoBehaviour:
   moveSpeed: 1
   maxHealth: 1
   attackCooldown: 3
-  slashDuration: 1
   slashDistance: 2
   slashDamage: 10
   attackAnim: {fileID: 7400000, guid: 2c45309e89192a59ca7888096e1ddde5, type: 2}
   deathAnim: {fileID: 7400000, guid: d080665f8756e6a03988076dd00ca4da, type: 2}
+  _scoreValue: 2
 --- !u!114 &8529188030103406122
 MonoBehaviour:
   m_ObjectHideFlags: 0

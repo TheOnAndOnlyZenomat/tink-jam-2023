@@ -132,11 +132,11 @@ MonoBehaviour:
   moveSpeed: 2
   maxHealth: 130
   attackCooldown: 3
-  slamDuration: 1
   slamDistance: 2
   slamDamage: 45
   attackAnim: {fileID: 7400000, guid: 21c8dfc4aa979a20ea339bb720e81871, type: 2}
   deathAnim: {fileID: 7400000, guid: 7ba4e2fef21eb5911ae9f5c84a4400a6, type: 2}
+  _scoreValue: 5
 --- !u!114 &627561024430522251
 MonoBehaviour:
   m_ObjectHideFlags: 0
