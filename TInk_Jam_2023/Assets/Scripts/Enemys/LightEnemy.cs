@@ -5,111 +5,118 @@ using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
 {
-    [SerializeField] private float slowSpeed = 2f; // Speed when moving slowly
-    [SerializeField] private float chargeSpeed = 6f; // Speed when charging
-    [SerializeField] private float chargeDistance = 5f; // Distance to start charging
-    [SerializeField] private float chargeDuration = 2f; // Duration of the charge
-    [SerializeField] private float cooldownDuration = 3f; // Cooldown duration after charging
-    [SerializeField] private float attackCooldown = 3f;
-    [SerializeField] private float stabDuration = 1f;
-    [SerializeField] private float stabDistance = 2f;
-    [SerializeField] private float stabDamage = 10f;
+	[SerializeField] private float slowSpeed = 2f; // Speed when moving slowly
+	[SerializeField] private float chargeSpeed = 6f; // Speed when charging
+	[SerializeField] private float chargeDistance = 5f; // Distance to start charging
+	[SerializeField] private float chargeDuration = 2f; // Duration of the charge
+	[SerializeField] private float cooldownDuration = 5f; // Cooldown duration after charging
+	[SerializeField] private float attackCooldown = 3f;
+	[SerializeField] private float stabDuration = 1f;
+	[SerializeField] private float stabDistance = 2f;
+	[SerializeField] private float stabDamage = 10f;
 
-    [SerializeField] private int maxHealth;
+	[SerializeField] private int maxHealth;
 
-    private bool isCharging = false;
-    private float chargeTimer = 0f;
-    private float cooldownTimer = 0f;
-    private int currentHealth;
+	private bool isCharging = false;
+	private float chargeTimer = 0f;
+	private float cooldownTimer = 0f;
+	private int currentHealth;
 
-    private Transform player;
+	private Transform player;
 
-    void Start()
-    {
-        // Assuming your player has a "Player" tag
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        currentHealth = maxHealth;
-    }
+	private float attackCooldownTimer;
 
-    void Update()
-    {
-        if (cooldownTimer > 0)
-        {
-            // If in cooldown, decrement the cooldown timer and move slowly
-            cooldownTimer -= Time.deltaTime;
-            MoveSlowly();
-        }
-        else
-        {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+	void Start()
+	{
+		// Assuming your player has a "Player" tag
+		player = GameObject.FindGameObjectWithTag("Player").transform;
+		currentHealth = maxHealth;
+	}
 
-            if (distanceToPlayer < chargeDistance)
-            {
-                if (!isCharging)
-                {
-                    // Start charging
-                    isCharging = true;
-                    chargeTimer = chargeDuration;
-                    ChargeAtPlayer();
-                }
+	bool CanAttack()
+	{
+		// Check if the attack cooldown has expired and the player is within attack range
+		return attackCooldownTimer <= 0 && Vector2.Distance(transform.position, player.position) < stabDistance;
+	}
 
-                // While charging, move at charge speed
-                ChargeAtPlayer();
+	bool CanCharge()
+	{
+		// Check if the attack cooldown has expired and the player is within attack range
+		return cooldownTimer <= 0 && Vector2.Distance(transform.position, player.position) < chargeDistance;
+	}
 
-                // Decrement the charge timer
-                chargeTimer -= Time.deltaTime;
+	void FixedUpdate()
+	{
+		// Update the attack cooldown timer
+		if (attackCooldownTimer > 0)
+		{
+			attackCooldownTimer -= Time.fixedDeltaTime;
+		}
 
-                if (chargeTimer <= 0)
-                {
-                    // Stop charging, start cooldown
-                    isCharging = false;
-                    cooldownTimer = cooldownDuration;
-                }
-            }
-            else
-            {
-                // If the player is out of range, move slowly
-                MoveSlowly();
-            }
-        }
-    }
+		if (cooldownTimer > 0)
+		{
+			cooldownTimer -= Time.fixedDeltaTime;
+		}
+	}
 
-    void MoveSlowly()
-    {
-        // Move at slow speed
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.Translate(direction * slowSpeed * Time.deltaTime);
-    }
+	void Update()
+	{
+		if (cooldownTimer > 0)
+		{
+			MoveSlowly();
+		}
+		else
+		{
+			if (CanCharge()) {
+				if (!isCharging) {
+					isCharging = true;
+					chargeTimer = chargeDuration;
+					ChargeAtPlayer();
+				}
+				ChargeAtPlayer();
+				chargeTimer -= Time.deltaTime;
 
-    void ChargeAtPlayer()
-    {
-        // Move towards the player at charge speed
-        transform.position = Vector2.MoveTowards(transform.position, player.position, chargeSpeed * Time.deltaTime);
-        
-        /*if (isCharging)
-        {
-            //stabbing logic
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            if (distanceToPlayer < stabDistance)
-            {
-                PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(stabDamage);
-                }
-                
-                // Play attack animation here
-            }
-        }*/
-    }
+				if (chargeTimer <= 0) {
+					isCharging = false;
+					cooldownTimer = cooldownDuration;
+				}
+			} else {
+				MoveSlowly();
+			}
+		}
+	}
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-} 
+	void MoveSlowly()
+	{
+		// Move at slow speed
+		Vector2 direction = (player.position - transform.position).normalized;
+		transform.Translate(direction * slowSpeed * Time.deltaTime);
+	}
+
+	void ChargeAtPlayer()
+	{
+		// Move towards the player at charge speed
+		transform.position = Vector2.MoveTowards(transform.position, player.position, chargeSpeed * Time.deltaTime);
+
+		if (isCharging && CanAttack())
+		{
+			attackCooldownTimer = attackCooldown;
+			//stabbing logic
+			float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+			if (distanceToPlayer < stabDistance)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.stabDamage);
+			}
+		}
+	}
+
+	public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
+		if (currentHealth <= 0)
+		{
+			Destroy(gameObject);
+		}
+	}
+}
 

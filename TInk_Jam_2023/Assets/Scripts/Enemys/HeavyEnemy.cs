@@ -49,13 +49,10 @@ public class HeavyEnemy : MonoBehaviour
         // Optionally, deal damage to the player or trigger an attack animation
         // You can replace this with your own attack logic
         
-        /* PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(slamDamage);
-        }*/
+		player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slamDamage);
 
         // Reset the attack cooldown timer
+		//
         attackCooldownTimer = attackCooldown;
     }
 
@@ -73,6 +70,7 @@ public class HeavyEnemy : MonoBehaviour
             attackCooldownTimer -= Time.fixedDeltaTime;
         }
     }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

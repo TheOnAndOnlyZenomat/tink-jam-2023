@@ -47,11 +47,7 @@ public class MediumEnemyBehavior : MonoBehaviour
         // Optionally, deal damage to the player or trigger an attack animation
         // You can replace this with your own attack logic
         
-        /* PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(slashDamage);
-        }*/
+		player.gameObject.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.slashDamage);
 
         // Reset the attack cooldown timer
         attackCooldownTimer = attackCooldown;
