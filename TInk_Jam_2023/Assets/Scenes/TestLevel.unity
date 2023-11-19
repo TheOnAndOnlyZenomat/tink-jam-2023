@@ -225,16 +225,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5408743776505155209, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408743776505155209, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506794570577448856, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506794570577448856, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506794570577448856, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.28
+      value: -10.26
       objectReference: {fileID: 0}
     - target: {fileID: 6506794570577448856, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 6506794570577448856, guid: 0e78cbfe716e70d4e85f471ffdd04dab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -385,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176480895915831501, guid: 86179c1405af41a42a5b9adb91c6f6dd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 176480895915831501, guid: 86179c1405af41a42a5b9adb91c6f6dd, type: 3}
       propertyPath: m_TagString
@@ -670,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1700305215740408530, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1700305215740408530, guid: 3fc7d8580bb613b42a2d80d22a54d06d, type: 3}
       propertyPath: m_TagString

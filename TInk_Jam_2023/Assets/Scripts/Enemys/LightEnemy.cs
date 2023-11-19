@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class LightEnemy : MonoBehaviour
@@ -26,11 +27,23 @@ public class LightEnemy : MonoBehaviour
 
 	private float attackCooldownTimer;
 
+	private Animator animController;
+
+	[SerializeField]
+	private AnimationClip attackAnim;
+	[SerializeField]
+	private AnimationClip deathAnim;
+
+	private bool dying = false;
+	private bool died = false;
+
 	void Start()
 	{
 		// Assuming your player has a "Player" tag
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		currentHealth = maxHealth;
+
+		this.animController = this.gameObject.GetComponent<Animator>();
 	}
 
 	bool CanAttack()
@@ -61,9 +74,19 @@ public class LightEnemy : MonoBehaviour
 
 	void Update()
 	{
+		if (dying == true) {
+			foreach (BoxCollider2D collider in this.gameObject.GetComponents<BoxCollider2D>()) {
+				collider.enabled = false;
+			}
+
+			if (died != true) {
+				StartCoroutine(PlayDeath());
+			}
+			return;
+		}
+
 		if (cooldownTimer > 0)
 		{
-			/* MoveSlowly(); */
 			MoveAway();
 		}
 		else
@@ -108,23 +131,42 @@ public class LightEnemy : MonoBehaviour
 
 		if (isCharging && CanAttack())
 		{
-			attackCooldownTimer = attackCooldown;
-			//stabbing logic
 			float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+			animController.SetBool("isAttacking", true);
+			attackCooldownTimer = attackCooldown;
+
+			animController.transform.localScale = new Vector3(animController.transform.localScale.x * -1, animController.transform.localScale.y, animController.transform.localScale.z);
+
+			//stabbing logic
 			if (distanceToPlayer < stabDistance)
 			{
-				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.stabDamage);
+				player.GetComponent<PlayerHealthManager>().PlayerTakeDamage((int)this.stabDamage);
 			}
+			StartCoroutine(WaitForAttackAnim());
 		}
+	}
+
+	IEnumerator WaitForAttackAnim() {
+		yield return new WaitForSeconds(this.attackAnim.length);
+		animController.SetBool("isAttacking", false);
+		animController.transform.rotation = new Quaternion(0, 0, 0, 0);
 	}
 
 	public void TakeDamage(int damage)
 	{
 		currentHealth -= damage;
-		if (currentHealth <= 0)
-		{
-			Destroy(gameObject);
+
+		if (currentHealth <= 0) {
+			this.dying = true;
 		}
+	}
+
+	IEnumerator PlayDeath() {
+		this.died = true;
+		animController.SetBool("isDying", true);
+		yield return new WaitForSeconds(this.deathAnim.length);
+		Destroy(this.gameObject);
 	}
 }
 
