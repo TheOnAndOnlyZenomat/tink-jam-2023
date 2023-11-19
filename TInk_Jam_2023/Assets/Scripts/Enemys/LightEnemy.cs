@@ -34,8 +34,13 @@ public class LightEnemy : MonoBehaviour
 	[SerializeField]
 	private AnimationClip deathAnim;
 
+	[SerializeField] private AudioClip _attackSound;
+	[SerializeField] private AudioClip _deathSound;
+	private AudioSource _audioSource;
+
 	private bool dying = false;
 	private bool died = false;
+	
 
 	void Start()
 	{
@@ -44,6 +49,8 @@ public class LightEnemy : MonoBehaviour
 		currentHealth = maxHealth;
 
 		this.animController = this.gameObject.GetComponent<Animator>();
+		
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	bool CanAttack()
@@ -134,6 +141,7 @@ public class LightEnemy : MonoBehaviour
 			float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
 			animController.SetBool("isAttacking", true);
+			_audioSource.PlayOneShot(_attackSound);
 			attackCooldownTimer = attackCooldown;
 
 			animController.transform.localScale = new Vector3(animController.transform.localScale.x * -1, animController.transform.localScale.y, animController.transform.localScale.z);
@@ -165,6 +173,7 @@ public class LightEnemy : MonoBehaviour
 	IEnumerator PlayDeath() {
 		this.died = true;
 		animController.SetBool("isDying", true);
+		_audioSource.PlayOneShot(_deathSound);
 		yield return new WaitForSeconds(this.deathAnim.length);
 		FindObjectOfType<ScoreManager>().IncreaseScore(_scoreValue);
 		Destroy(this.gameObject);
